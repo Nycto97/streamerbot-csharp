@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = ".CodeTemplate", ".CodeTempl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleCommandTriggered", "HandleCommandTriggered\HandleCommandTriggered.csproj", "{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleMessage", "HandleMessage\HandleMessage.csproj", "{37394273-5D0D-4D21-995A-D4B953878BF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37394273-5D0D-4D21-995A-D4B953878BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37394273-5D0D-4D21-995A-D4B953878BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37394273-5D0D-4D21-995A-D4B953878BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37394273-5D0D-4D21-995A-D4B953878BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
