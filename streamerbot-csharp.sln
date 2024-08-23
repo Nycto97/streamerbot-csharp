@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = ".CodeTemplate", ".CodeTemplate\.CodeTemplate.csproj", "{8B57B59E-DCCC-498F-9386-5B086D5E9F40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleCommandTriggered", "HandleCommandTriggered\HandleCommandTriggered.csproj", "{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{8B57B59E-DCCC-498F-9386-5B086D5E9F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B57B59E-DCCC-498F-9386-5B086D5E9F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B57B59E-DCCC-498F-9386-5B086D5E9F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29615B23-42FB-4C0D-9F12-C5BF7C8BAF4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
