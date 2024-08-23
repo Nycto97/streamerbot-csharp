@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleCommandTriggered", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleMessage", "HandleMessage\HandleMessage.csproj", "{37394273-5D0D-4D21-995A-D4B953878BF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleSub", "HandleSub\HandleSub.csproj", "{A51A08D3-1097-4527-B80B-A034303A281D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{37394273-5D0D-4D21-995A-D4B953878BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37394273-5D0D-4D21-995A-D4B953878BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37394273-5D0D-4D21-995A-D4B953878BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A51A08D3-1097-4527-B80B-A034303A281D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A51A08D3-1097-4527-B80B-A034303A281D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A51A08D3-1097-4527-B80B-A034303A281D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A51A08D3-1097-4527-B80B-A034303A281D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
