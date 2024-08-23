@@ -21,6 +21,8 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         if (userName == "sery_bot" && message.StartsWith("Sery_Bot has joined"))
         {
             CPH.SendMessage("good bot");
+
+            return true;
         }
 
         // Sounds (keep at bottom of file because execution stops until sound is played (3rd argument is true))
