@@ -122,40 +122,50 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
             // Fun
 
+            case "5615e33a-0713-46ca-8e0c-6edcfb0402dd": // Bonk
             case "58bd9d11-0f89-4cfc-80bd-0de6f5304982": // Hug
             case "a49297a7-73cb-4071-b84d-c3a9b69ef74b": // Kiss
             case "009c93bd-dff1-4617-b667-94ca27648dec": // Lick
             case "2664ddf0-06e1-4e04-a690-63ba11b4dd6b": // Smash
                 string action =
-                    commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "hugs"
+                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd" ? "bonks"
+                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "hugs"
                     : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "kisses"
                     : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "licks"
                     : "smashes";
 
                 string suffix =
-                    commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "love"
+                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd" ? "horniness"
+                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "love"
                     : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "passion"
                     : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "wetness"
                     : "strength";
 
                 string emote =
                     (
+                        commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd"
+                        || commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec"
+                    )
+                        ? "nycto97LOL1"
+                    : (
                         commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982"
                         || commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b"
                     )
                         ? "nycto97Love1"
-                    : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "nycto97LOL1"
                     : "nycto97RIP1";
 
                 string soundFileName =
-                    commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982"
+                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd"
+                        ? "Bonk - Sound Effect (HD).mp3"
+                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982"
                         ? "Hug-Clothes-Pat_on_the_Back-6.mp3"
                     : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "smoochykiss.mp3"
                     : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "spong-lick.mp3"
                     : "punch-sound-effect.mp3";
 
                 float volume =
-                    soundFileName == "Hug-Clothes-Pat_on_the_Back-6.mp3" ? 0.1f
+                    soundFileName == "Bonk - Sound Effect (HD).mp3" ? 0.1f
+                    : soundFileName == "Hug-Clothes-Pat_on_the_Back-6.mp3" ? 0.1f
                     : soundFileName == "smoochykiss.mp3" ? 0.1f
                     : soundFileName == "spong-lick.mp3" ? 0.1f
                     : 0.1f;
