@@ -18,7 +18,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("user", out string user);
         CPH.TryGetArg("message", out string message);
 
-        if (userName == "sery_bot" && message.StartsWith("Sery_Bot has joined"))
+        if (userName == "sery_bot" && message.StartsWith($"{user} has joined"))
         {
             CPH.SendMessage("good bot");
 
