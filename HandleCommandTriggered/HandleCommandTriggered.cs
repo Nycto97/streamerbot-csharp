@@ -228,6 +228,28 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
             // =================================================================
 
+            // Sounds
+
+            case "3cb1427d-31b8-4c44-b227-37059c7542cf": // Badum tss
+                CPH.PlaySound(
+                    @"D:\jelle\Music\Twitch\Sounds\Ba Dum Tss (Sound Effect).mp3",
+                    0.07f,
+                    false
+                );
+
+                break;
+
+            case "9bba8f00-a82e-4cc7-ab81-bcff9e85de8a": // Quack
+                CPH.PlaySound(
+                    @"D:\jelle\Music\Twitch\Sounds\075176_duck-quack-40345.mp3",
+                    0.05f,
+                    false
+                );
+
+                break;
+
+            // =================================================================
+
             // Socials/accounts/links
 
             case "6a8c226d-c040-4e18-8f46-6daba6e2b48f": // Blizzard/Battle.net
