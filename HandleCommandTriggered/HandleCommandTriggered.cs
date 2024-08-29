@@ -52,6 +52,13 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 break;
 
+            case "e8a6ee0f-ca05-42dd-bf55-6f88423c629c": // Emote test
+                CPH.SendAction(
+                    $"@{user} Please verify you can see these emotes: peepoRun (BetterTTV emote) | Chadge (FrankerFaceZ emote) | o7 (7TV emote)"
+                );
+
+                break;
+
             case "64fe6caf-1fab-46eb-aeeb-17558db811ca": // Shoutout
                 if (string.IsNullOrEmpty(rawInput))
                 {
