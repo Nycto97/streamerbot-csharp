@@ -17,6 +17,8 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("tipAmount", out float tipAmount);
         CPH.TryGetArg("tipMessage", out string tipMessage);
 
+        string tipAmountFormatted = tipAmount.ToString("F2");
+
         string tipMessageFormatted = !string.IsNullOrEmpty(tipMessage)
             ? $" - \"{tipMessage}\" -"
             : "";
@@ -24,37 +26,37 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         if (tipAmount >= 1 && tipAmount < 5)
         {
             CPH.SendAction(
-                $"{tipUsername} tipped {tipCurrency} {tipAmount}! nycto97Hype1{tipMessageFormatted} Thank you! nycto97Love1"
+                $"{tipUsername} tipped {tipCurrency} {tipAmountFormatted}! nycto97Hype1{tipMessageFormatted} Thank you! nycto97Love1"
             );
         }
         else if (tipAmount >= 5 && tipAmount < 10)
         {
             CPH.SendAction(
-                $"{tipUsername} threw {tipCurrency} {tipAmount} in my piggy bank! nycto97Hype1{tipMessageFormatted} Thank you for supporting me! nycto97Love1"
+                $"{tipUsername} threw {tipCurrency} {tipAmountFormatted} in my piggy bank! nycto97Hype1{tipMessageFormatted} Thank you for supporting me! nycto97Love1"
             );
         }
         else if (tipAmount >= 10 && tipAmount < 20)
         {
             CPH.SendAction(
-                $"{tipUsername} supported me by donating {tipCurrency} {tipAmount}! nycto97Hype1{tipMessageFormatted} Thank you very much! nycto97Love1"
+                $"{tipUsername} supported me by donating {tipCurrency} {tipAmountFormatted}! nycto97Hype1{tipMessageFormatted} Thank you very much! nycto97Love1"
             );
         }
         else if (tipAmount >= 20 && tipAmount < 50)
         {
             CPH.SendAction(
-                $"{tipUsername} donated {tipCurrency} {tipAmount}!!! nycto97Hype1{tipMessageFormatted} Thank you so much for your support! nycto97Love1"
+                $"{tipUsername} donated {tipCurrency} {tipAmountFormatted}!!! nycto97Hype1{tipMessageFormatted} Thank you so much for your support! nycto97Love1"
             );
         }
         else if (tipAmount >= 50 && tipAmount < 100)
         {
             CPH.SendAction(
-                $"{tipUsername} is an actual superhero and donated {tipCurrency} {tipAmount}!!! nycto97Hype1{tipMessageFormatted} Thank you for your massive support! nycto97Love1"
+                $"{tipUsername} is an actual superhero and donated {tipCurrency} {tipAmountFormatted}!!! nycto97Hype1{tipMessageFormatted} Thank you for your massive support! nycto97Love1"
             );
         }
         else if (tipAmount >= 100)
         {
             CPH.SendAction(
-                $"{tipUsername} is an absolute legend and donated {tipCurrency} {tipAmount}!!! nycto97RIP1{tipMessageFormatted} Thank you so so so much! nycto97Love1"
+                $"{tipUsername} is an absolute legend and donated {tipCurrency} {tipAmountFormatted}!!! nycto97RIP1{tipMessageFormatted} Thank you so so so much! nycto97Love1"
             );
         }
 
