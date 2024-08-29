@@ -211,18 +211,9 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 break;
 
             case "06fdc6ff-62cd-4257-ac05-e09503aa4b6a": // Lurk
-                if (string.IsNullOrEmpty(rawInput))
-                {
-                    CPH.SendAction(
-                        $"Thanks for lurking @{user} nycto97Wave1 I appreciate your presence! nycto97Love1"
-                    );
-                }
-                else
-                {
-                    CPH.SendAction(
-                        $"Thanks for lurking @{user} nycto97Wave1 - \"{rawInput}\" - I appreciate your presence! nycto97Love1"
-                    );
-                }
+                CPH.SendAction(
+                    $"Thanks for lurking @{user} nycto97Wave1{(!string.IsNullOrEmpty(rawInput) ? $" - \"{rawInput}\" -" : "")} I appreciate your presence! nycto97Love1"
+                );
 
                 break;
 
