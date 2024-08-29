@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Streamer.bot.Plugin.Interface; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Enums; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
@@ -17,7 +18,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("tipAmount", out float tipAmount);
         CPH.TryGetArg("tipMessage", out string tipMessage);
 
-        string tipAmountFormatted = tipAmount.ToString("F2");
+        string tipAmountFormatted = tipAmount.ToString("F2", CultureInfo.InvariantCulture);
 
         string tipMessageFormatted = !string.IsNullOrEmpty(tipMessage)
             ? $" - \"{tipMessage}\" -"
