@@ -14,7 +14,10 @@ using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
 
 public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.bot
 {
-    private static readonly HttpClient httpClient = new HttpClient();
+    private static readonly HttpClient httpClient = new HttpClient
+    {
+        Timeout = TimeSpan.FromSeconds(30),
+    };
     private const string apiUrl = "https://v6.exchangerate-api.com/v6/";
 
     public bool Execute()
