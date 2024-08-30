@@ -71,7 +71,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 $"{username} is an actual superhero and donated {amountFormatted} {currencyCode}{amountInUSDFormatted}!!! nycto97Hype1{messageFormatted} Thank you for your massive support! nycto97Love1"
             );
         }
-        else if (amountInUSD >= 100)
+        else
         {
             CPH.SendAction(
                 $"{username} is an absolute legend and donated {amountFormatted} {currencyCode}{amountInUSDFormatted}!!! nycto97RIP1{messageFormatted} Thank you so so so much! nycto97Love1"
