@@ -26,7 +26,16 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         string amountFormatted = amount.ToString("N2", CultureInfo.InvariantCulture);
 
+        float amountInUSD = amount;
+
         string messageFormatted = !string.IsNullOrEmpty(message) ? $" - \"{message}\" -" : "";
+
+        if (currencyCode != "USD")
+        {
+            float exchangeRateToUSD = GetExchangeRateToUSD(currencyCode).GetAwaiter().GetResult();
+
+            amountInUSD = amount * exchangeRateToUSD;
+        }
 
         if (amount >= 1 && amount < 5)
         {
