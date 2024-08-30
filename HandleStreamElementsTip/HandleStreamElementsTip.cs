@@ -41,7 +41,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 $" ({amountInUSD.ToString("N2", CultureInfo.InvariantCulture)} USD)";
         }
 
-        if (amountInUSD >= 1 && amountInUSD < 5)
+        if (amountInUSD < 5)
         {
             CPH.SendAction(
                 $"{username} tipped {amountFormatted} {currencyCode}{amountInUSDFormatted}! nycto97Hype1{messageFormatted} Thank you! nycto97Love1"
