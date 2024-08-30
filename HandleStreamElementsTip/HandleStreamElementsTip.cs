@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Streamer.bot.Plugin.Interface; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Enums; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
@@ -11,6 +14,9 @@ using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
 
 public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.bot
 {
+    private static readonly HttpClient httpClient = new HttpClient();
+    private const string apiUrl = "https://v6.exchangerate-api.com/v6/";
+
     public bool Execute()
     {
         CPH.TryGetArg("tipUsername", out string username);
@@ -60,5 +66,29 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         }
 
         return true;
+    }
+
+    private async Task<float> GetExchangeRateToUSD(string currencyCode)
+    {
+        CPH.TryGetArg("exchangeRateApiApiKey", out string exchangeRateApiApiKey);
+
+        try
+        {
+            string requestUrl = $"{apiUrl}{exchangeRateApiApiKey}/latest/{currencyCode}";
+            HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
+            response.EnsureSuccessStatusCode();
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+            JObject json = JObject.Parse(responseBody);
+            float exchangeRate = (float)json["conversion_rates"]["USD"];
+
+            return exchangeRate;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching exchange rate: {ex.Message}");
+
+            return 1.0f;
+        }
     }
 }
