@@ -13,51 +13,49 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 {
     public bool Execute()
     {
-        CPH.TryGetArg("tipUsername", out string tipUsername);
-        CPH.TryGetArg("tipCurrency", out string tipCurrency);
-        CPH.TryGetArg("tipAmount", out float tipAmount);
-        CPH.TryGetArg("tipMessage", out string tipMessage);
+        CPH.TryGetArg("tipUsername", out string username);
+        CPH.TryGetArg("tipCurrency", out string currencyCode);
+        CPH.TryGetArg("tipAmount", out float amount);
+        CPH.TryGetArg("tipMessage", out string message);
 
-        string tipAmountFormatted = tipAmount.ToString("N2", CultureInfo.InvariantCulture);
+        string amountFormatted = amount.ToString("N2", CultureInfo.InvariantCulture);
 
-        string tipMessageFormatted = !string.IsNullOrEmpty(tipMessage)
-            ? $" - \"{tipMessage}\" -"
-            : "";
+        string messageFormatted = !string.IsNullOrEmpty(message) ? $" - \"{message}\" -" : "";
 
-        if (tipAmount >= 1 && tipAmount < 5)
+        if (amount >= 1 && amount < 5)
         {
             CPH.SendAction(
-                $"{tipUsername} tipped {tipCurrency} {tipAmountFormatted}! nycto97Hype1{tipMessageFormatted} Thank you! nycto97Love1"
+                $"{username} tipped {currencyCode} {amountFormatted}! nycto97Hype1{messageFormatted} Thank you! nycto97Love1"
             );
         }
-        else if (tipAmount >= 5 && tipAmount < 10)
+        else if (amount >= 5 && amount < 10)
         {
             CPH.SendAction(
-                $"{tipUsername} threw {tipCurrency} {tipAmountFormatted} in my piggy bank! nycto97Hype1{tipMessageFormatted} Thank you for supporting me! nycto97Love1"
+                $"{username} threw {currencyCode} {amountFormatted} in my piggy bank! nycto97Hype1{messageFormatted} Thank you for supporting me! nycto97Love1"
             );
         }
-        else if (tipAmount >= 10 && tipAmount < 20)
+        else if (amount >= 10 && amount < 20)
         {
             CPH.SendAction(
-                $"{tipUsername} supported me by donating {tipCurrency} {tipAmountFormatted}! nycto97Hype1{tipMessageFormatted} Thank you very much! nycto97Love1"
+                $"{username} supported me by donating {currencyCode} {amountFormatted}! nycto97Hype1{messageFormatted} Thank you very much! nycto97Love1"
             );
         }
-        else if (tipAmount >= 20 && tipAmount < 50)
+        else if (amount >= 20 && amount < 50)
         {
             CPH.SendAction(
-                $"{tipUsername} donated {tipCurrency} {tipAmountFormatted}!!! nycto97Hype1{tipMessageFormatted} Thank you so much for your support! nycto97Love1"
+                $"{username} donated {currencyCode} {amountFormatted}!!! nycto97Hype1{messageFormatted} Thank you so much for your support! nycto97Love1"
             );
         }
-        else if (tipAmount >= 50 && tipAmount < 100)
+        else if (amount >= 50 && amount < 100)
         {
             CPH.SendAction(
-                $"{tipUsername} is an actual superhero and donated {tipCurrency} {tipAmountFormatted}!!! nycto97Hype1{tipMessageFormatted} Thank you for your massive support! nycto97Love1"
+                $"{username} is an actual superhero and donated {currencyCode} {amountFormatted}!!! nycto97Hype1{messageFormatted} Thank you for your massive support! nycto97Love1"
             );
         }
-        else if (tipAmount >= 100)
+        else if (amount >= 100)
         {
             CPH.SendAction(
-                $"{tipUsername} is an absolute legend and donated {tipCurrency} {tipAmountFormatted}!!! nycto97RIP1{tipMessageFormatted} Thank you so so so much! nycto97Love1"
+                $"{username} is an absolute legend and donated {currencyCode} {amountFormatted}!!! nycto97RIP1{messageFormatted} Thank you so so so much! nycto97Love1"
             );
         }
 

@@ -92,34 +92,30 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 string targetChannelTitle = twitchUserInfoEx.ChannelTitle;
                 string game = twitchUserInfoEx.Game;
 
-                string actionPrefix = $"BIG shoutout to @{targetUser} nycto97Love1 ";
+                string actionPrefix = $"BIG shoutout to @{targetUser} nycto97Love1";
 
                 if (string.IsNullOrEmpty(targetChannelTitle) && string.IsNullOrEmpty(game))
                 {
                     CPH.SendAction(
-                        actionPrefix
-                            + $"You can find them over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{actionPrefix} You can find them over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else if (string.IsNullOrEmpty(game))
                 {
                     CPH.SendAction(
-                        actionPrefix
-                            + $"They last streamed \"{targetChannelTitle}\" over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{actionPrefix} They last streamed \"{targetChannelTitle}\" over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else if (string.IsNullOrEmpty(targetChannelTitle))
                 {
                     CPH.SendAction(
-                        actionPrefix
-                            + $"They last were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{actionPrefix} They last were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else
                 {
                     CPH.SendAction(
-                        actionPrefix
-                            + $"They last streamed \"{targetChannelTitle}\" and were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{actionPrefix} They last streamed \"{targetChannelTitle}\" and were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
 
@@ -134,48 +130,55 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             case "a49297a7-73cb-4071-b84d-c3a9b69ef74b": // Kiss
             case "009c93bd-dff1-4617-b667-94ca27648dec": // Lick
             case "2664ddf0-06e1-4e04-a690-63ba11b4dd6b": // Smash
-                string action =
-                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd" ? "bonks"
-                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "hugs"
-                    : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "kisses"
-                    : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "licks"
-                    : "smashes";
+                string action = commandIdString switch
+                {
+                    "5615e33a-0713-46ca-8e0c-6edcfb0402dd" => "bonks",
+                    "58bd9d11-0f89-4cfc-80bd-0de6f5304982" => "hugs",
+                    "a49297a7-73cb-4071-b84d-c3a9b69ef74b" => "kisses",
+                    "009c93bd-dff1-4617-b667-94ca27648dec" => "licks",
+                    "2664ddf0-06e1-4e04-a690-63ba11b4dd6b" => "smashes",
+                    _ => "undefined action",
+                };
 
-                string suffix =
-                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd" ? "horniness"
-                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982" ? "love"
-                    : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "passion"
-                    : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "wetness"
-                    : "strength";
+                string suffix = commandIdString switch
+                {
+                    "5615e33a-0713-46ca-8e0c-6edcfb0402dd" => "horniness",
+                    "58bd9d11-0f89-4cfc-80bd-0de6f5304982" => "love",
+                    "a49297a7-73cb-4071-b84d-c3a9b69ef74b" => "passion",
+                    "009c93bd-dff1-4617-b667-94ca27648dec" => "wetness",
+                    "2664ddf0-06e1-4e04-a690-63ba11b4dd6b" => "strength",
+                    _ => "undefined suffix",
+                };
 
-                string emote =
-                    (
-                        commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd"
-                        || commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec"
-                    )
-                        ? "nycto97LOL1"
-                    : (
-                        commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982"
-                        || commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b"
-                    )
-                        ? "nycto97Love1"
-                    : "nycto97RIP1";
+                string emote = commandIdString switch
+                {
+                    "5615e33a-0713-46ca-8e0c-6edcfb0402dd" => "nycto97LOL1",
+                    "58bd9d11-0f89-4cfc-80bd-0de6f5304982" => "nycto97Love1",
+                    "a49297a7-73cb-4071-b84d-c3a9b69ef74b" => "nycto97Love1",
+                    "009c93bd-dff1-4617-b667-94ca27648dec" => "nycto97LOL1",
+                    "2664ddf0-06e1-4e04-a690-63ba11b4dd6b" => "nycto97RIP1",
+                    _ => "undefined emote",
+                };
 
-                string soundFileName =
-                    commandIdString == "5615e33a-0713-46ca-8e0c-6edcfb0402dd"
-                        ? "Bonk - Sound Effect (HD).mp3"
-                    : commandIdString == "58bd9d11-0f89-4cfc-80bd-0de6f5304982"
-                        ? "Hug-Clothes-Pat_on_the_Back-6.mp3"
-                    : commandIdString == "a49297a7-73cb-4071-b84d-c3a9b69ef74b" ? "smoochykiss.mp3"
-                    : commandIdString == "009c93bd-dff1-4617-b667-94ca27648dec" ? "spong-lick.mp3"
-                    : "punch-sound-effect.mp3";
+                string soundFileName = commandIdString switch
+                {
+                    "5615e33a-0713-46ca-8e0c-6edcfb0402dd" => "Bonk - Sound Effect (HD).mp3",
+                    "58bd9d11-0f89-4cfc-80bd-0de6f5304982" => "Hug-Clothes-Pat_on_the_Back-6.mp3",
+                    "a49297a7-73cb-4071-b84d-c3a9b69ef74b" => "smoochykiss.mp3",
+                    "009c93bd-dff1-4617-b667-94ca27648dec" => "spong-lick.mp3",
+                    "2664ddf0-06e1-4e04-a690-63ba11b4dd6b" => "punch-sound-effect.mp3",
+                    _ => "undefined sound",
+                };
 
-                float volume =
-                    soundFileName == "Bonk - Sound Effect (HD).mp3" ? 0.1f
-                    : soundFileName == "Hug-Clothes-Pat_on_the_Back-6.mp3" ? 0.1f
-                    : soundFileName == "smoochykiss.mp3" ? 0.1f
-                    : soundFileName == "spong-lick.mp3" ? 0.1f
-                    : 0.1f;
+                float volume = soundFileName switch
+                {
+                    "Bonk - Sound Effect (HD).mp3" => 0.1f,
+                    "Hug-Clothes-Pat_on_the_Back-6.mp3" => 0.1f,
+                    "smoochykiss.mp3" => 0.1f,
+                    "spong-lick.mp3" => 0.1f,
+                    "punch-sound-effect.mp3" => 0.1f,
+                    _ => 0.1f,
+                };
 
                 Random random = new Random();
                 int randomPercentage = random.Next(0, 101);
@@ -245,61 +248,96 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
             case "6a8c226d-c040-4e18-8f46-6daba6e2b48f": // Blizzard/Battle.net
                 CPH.SendAction("Blizzard / Battle.net -> Nycto#21256 🎮");
+
                 break;
+
             case "e3c23b9c-ed27-494b-a7c6-8fe99b20a0c1": // Call of Duty/Activision
                 CPH.SendAction("Call of Duty / Activision -> Nycto#5536049 🎮");
+
                 break;
+
             case "ec1c33ab-6b56-4153-a10f-c53fd083deed": // Counter-strike skins
                 CPH.SendAction(
                     "CounterStrike2 Skins -> steamcommunity.com/id/Nycto97/inventory/#730 🔫"
                 );
+
                 break;
+
             case "9adb405a-c250-4ef6-99ca-811a54f72dfa": // Discord
                 CPH.SendAction("Discord -> discord.gg/Y2fat6v 💜");
+
                 break;
+
             case "65cddd4d-de0f-4f50-868a-26f6b6faadce": // EA/Origin
                 CPH.SendAction("EA / Origin -> Nycto1337 🎮");
+
                 break;
+
             case "5561535f-e460-4c7d-84a3-f36baab3face": // Epic Games
                 CPH.SendAction("EpicGames -> Nycto97 🎮");
+
                 break;
+
             case "80328fd5-620f-4808-a6ed-7598561ba685": // Facebook
                 CPH.SendAction("Facebook -> facebook.com/Nycto1337 💙");
+
                 break;
+
             case "ff683f2e-c906-4de1-bdb7-d1742ad64c50": // Instagram
                 CPH.SendAction("Instagram -> instagram.com/Nycto97 💗");
+
                 break;
+
             case "df11f4ea-42c5-48a1-8dfa-65cd7beceab1": // PlayStation
                 CPH.SendAction("PlayStation (PSN) -> Nycto97 🎮");
+
                 break;
+
             case "34bb5dbe-684c-4cbc-8f6c-ad976d30f709": // Riot Games
                 CPH.SendAction("RiotGames -> Nycto#0420 🎮");
+
                 break;
+
             case "2bead345-45e0-4a6c-9891-d21a60a02559": // Socials
                 CPH.SendAction("Socials -> linktr.ee/Nycto97 ✨");
+
                 break;
+
             case "5d12757f-7fd7-4109-9fb7-e933dd636729": // Steam
                 CPH.SendAction("Steam -> steamcommunity.com/id/Nycto97 🎮");
+
                 break;
+
             case "54714415-aa5f-4315-80d4-46c9a8f96866": // TikTok
                 CPH.SendAction("TikTok -> tiktok.com/@Nycto1337 💗");
+
                 break;
+
             case "a30e24f3-55ad-4f88-80a6-376fb83e2ef8": // Tip/donate
                 CPH.SendAction(
                     $"Tip/donate -> streamelements.com/{broadcastUserName}/tip nycto97Hype1 @{user} only tip what you can afford, I don't want you to get in trouble! nycto97Love1"
                 );
+
                 break;
+
             case "6fbcbdf7-7203-4861-8f9a-bdc82c40424a": // Twitter/X
                 CPH.SendAction("Twitter (X) -> twitter.com/Nycto97 💙");
+
                 break;
+
             case "8013b569-e4f3-432c-b0da-16cc08822561": // Ubisoft
                 CPH.SendAction("Ubisoft -> Nycto1337 🎮");
+
                 break;
+
             case "fc078460-677e-4529-93ec-46b666d35dfc": // Xbox
                 CPH.SendAction("Xbox -> Nycto97 🎮");
+
                 break;
+
             case "6c534184-d7af-4174-b585-5c57c5a0ab94": // YouTube
                 CPH.SendAction("YouTube -> youtube.com/Nycto97 🎬");
+
                 break;
 
             // =================================================================
