@@ -99,7 +99,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error fetching exchange rate: {ex.Message}");
+            CPH.LogError($"Error fetching exchange rate: {ex.Message}");
 
             return 1.0f;
         }
