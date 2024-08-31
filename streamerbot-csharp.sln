@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleUserBanned", "HandleU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleStreamElementsTip", "HandleStreamElementsTip\HandleStreamElementsTip.csproj", "{821049C7-5D9C-410D-A7F8-852D91972D4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandleCheer", "HandleCheer\HandleCheer.csproj", "{982C0EE7-7CEC-4189-AEDA-83D936814A92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{821049C7-5D9C-410D-A7F8-852D91972D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{821049C7-5D9C-410D-A7F8-852D91972D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{821049C7-5D9C-410D-A7F8-852D91972D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982C0EE7-7CEC-4189-AEDA-83D936814A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982C0EE7-7CEC-4189-AEDA-83D936814A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982C0EE7-7CEC-4189-AEDA-83D936814A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982C0EE7-7CEC-4189-AEDA-83D936814A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
