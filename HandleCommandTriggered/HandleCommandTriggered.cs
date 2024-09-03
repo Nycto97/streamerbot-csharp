@@ -220,6 +220,13 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 break;
 
+            case "baf03811-5f49-4237-bcae-a21d39bbd1c0": // Unlurk
+                CPH.SendAction(
+                    $"Welcome back @{user} nycto97Wave1{(!string.IsNullOrEmpty(rawInput) ? $" - \"{rawInput}\" -" : "")} I'm glad you're still here! nycto97Love1"
+                );
+
+                break;
+
             // =================================================================
 
             // Sounds
