@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Streamer.bot.Plugin.Interface; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Enums; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
@@ -278,6 +279,26 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 CPH.PlaySound(
                     @"D:\jelle\Music\Twitch\Sounds\075176_duck-quack-40345.mp3",
                     0.05f,
+                    false
+                );
+
+                break;
+
+            // =================================================================
+
+            // Raid Messages
+
+            case "9ffc9124-e32e-4d67-a89f-85eaf9b2edc2": // Non subs
+                CPH.SendMessage(
+                    string.Join(" ", Enumerable.Repeat("twitchRaid Nycto TombRaid", 15)),
+                    false
+                );
+
+                break;
+
+            case "8e1cdcc0-5ea3-4640-aca4-2ca7c91fb85b": // Subs
+                CPH.SendMessage(
+                    string.Join(" ", Enumerable.Repeat("nycto97Hype Nycto TombRaid", 15)),
                     false
                 );
 
