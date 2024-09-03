@@ -255,6 +255,8 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                         true
                     );
 
+                    CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\Vanish Sound Effect.mp3", 0.1f);
+
                     CPH.Wait(1000);
 
                     CPH.SendMessage("o7");
