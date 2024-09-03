@@ -230,37 +230,30 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
             case "303ccc43-3191-4b52-a04c-9b4dd3fa8066": // Vanish
                 CPH.TryGetArg("userName", out string userName);
-                CPH.TryGetArg("isModerator", out bool isModerator);
 
                 if (userName == broadcastUserName)
                 {
                     CPH.SendAction(
                         $"@{user} Ayo streamer guy, nuh-uuuh.. You ain't going nowhere boii"
                     );
+
+                    break;
                 }
-                else if (isModerator == true)
-                {
-                    CPH.SendAction(
-                        $"@{user} Mods can't vanish TearGlove Also, I need you nycto97Love1"
-                    );
-                }
-                else
-                {
-                    int timeoutInSeconds = 20;
 
-                    CPH.TwitchTimeoutUser(
-                        userName,
-                        timeoutInSeconds,
-                        $"Vanished (Reload page if timeout persists after {timeoutInSeconds} seconds and shows as -1 seconds)",
-                        true
-                    );
+                CPH.TryGetArg("isModerator", out bool isModerator);
 
-                    CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\Vanish Sound Effect.mp3", 0.1f);
+                int timeoutInSeconds = isModerator ? 10 : 20;
+                bool timeoutAsBot = !isModerator;
+                string reason =
+                    $"Vanished (Reload page if timeout persists after {timeoutInSeconds} seconds and shows as -1 seconds)";
 
-                    CPH.Wait(1000);
+                CPH.TwitchTimeoutUser(userName, timeoutInSeconds, reason, timeoutAsBot);
 
-                    CPH.SendMessage("o7");
-                }
+                CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\Vanish Sound Effect.mp3", 0.1f);
+
+                CPH.Wait(1000);
+
+                CPH.SendMessage("o7");
 
                 break;
 
