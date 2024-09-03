@@ -81,6 +81,11 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             );
         }
 
+        CPH.PlaySound(
+            @"D:\jelle\Music\Twitch\Sounds\Cash Register (Kaching) - Sound Effect (HD).mp3",
+            0.1f
+        );
+
         return true;
     }
 
