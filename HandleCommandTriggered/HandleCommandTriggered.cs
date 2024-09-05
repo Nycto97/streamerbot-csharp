@@ -255,6 +255,15 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 CPH.SendMessage("o7");
 
+                if (isModerator)
+                {
+                    CPH.Wait(timeoutInSeconds * 1000); // Don't account for the 1 second delay earlier, use it as buffer
+
+                    CPH.TwitchAddModerator(userName);
+
+                    CPH.SendAction($"re-added @{user} as moderator", false);
+                }
+
                 break;
 
             // =================================================================
