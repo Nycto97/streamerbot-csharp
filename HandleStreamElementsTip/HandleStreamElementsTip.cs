@@ -46,37 +46,37 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         if (amountInUSD < 5)
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} tipped {amountFormatted} {currencyCode}{amountInUSDFormatted}! nycto97Hype1{messageFormatted} Thank you! nycto97Love1"
             );
         }
         else if (amountInUSD >= 5 && amountInUSD < 10)
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} threw {amountFormatted} {currencyCode}{amountInUSDFormatted} in my piggy bank! nycto97Hype1{messageFormatted} Thank you for supporting me! nycto97Love1"
             );
         }
         else if (amountInUSD >= 10 && amountInUSD < 20)
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} supported me by donating {amountFormatted} {currencyCode}{amountInUSDFormatted}! nycto97Hype1{messageFormatted} Thank you very much! nycto97Love1"
             );
         }
         else if (amountInUSD >= 20 && amountInUSD < 50)
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} donated {amountFormatted} {currencyCode}{amountInUSDFormatted}!!! nycto97Hype1{messageFormatted} Thank you so much for your support! nycto97Love1"
             );
         }
         else if (amountInUSD >= 50 && amountInUSD < 100)
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} is an actual superhero and donated {amountFormatted} {currencyCode}{amountInUSDFormatted}!!! nycto97Hype1{messageFormatted} Thank you for your massive support! nycto97Love1"
             );
         }
         else
         {
-            CPH.SendAction(
+            CPH.SendMessage(
                 $"{username} is an absolute legend and donated {amountFormatted} {currencyCode}{amountInUSDFormatted}!!! nycto97RIP1{messageFormatted} Thank you so so so much! nycto97Love1"
             );
         }

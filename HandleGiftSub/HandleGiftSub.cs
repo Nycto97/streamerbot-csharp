@@ -38,7 +38,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             _ => "Unknown Tier",
         };
 
-        CPH.SendAction(
+        CPH.SendMessage(
             $"{gifter} gifted a {tierFormatted} subscription "
                 + $"{(monthsGifted > 1 ? $"for {monthsGifted} months " : "")}"
                 + $"to @{recipientUser}"

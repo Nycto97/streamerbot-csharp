@@ -33,7 +33,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (createClipSuccess == false)
                 {
-                    CPH.SendAction($"@{user} Failed to create clip TearGlove");
+                    CPH.SendMessage($"@{user} Failed to create clip TearGlove");
 
                     break;
                 }
@@ -42,19 +42,19 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (string.IsNullOrEmpty(createClipUrl))
                 {
-                    CPH.SendAction(
+                    CPH.SendMessage(
                         $"@{user} Successfully created clip but failed to get the URL. You should find the clip at https://www.twitch.tv/{broadcastUserName}/clips?filter=clips&range=7d"
                     );
                 }
                 else
                 {
-                    CPH.SendAction($"@{user} Successfully created clip -> {createClipUrl}");
+                    CPH.SendMessage($"@{user} Successfully created clip -> {createClipUrl}");
                 }
 
                 break;
 
             case "e8a6ee0f-ca05-42dd-bf55-6f88423c629c": // Emote test
-                CPH.SendAction(
+                CPH.SendMessage(
                     $"@{user} Please verify you can see these emotes: peepoRun (BetterTTV emote) | Chadge (FrankerFaceZ emote) | o7 (7TV emote)"
                 );
 
@@ -63,7 +63,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             case "64fe6caf-1fab-46eb-aeeb-17558db811ca": // Shoutout
                 if (string.IsNullOrEmpty(rawInput))
                 {
-                    CPH.SendAction($"@{user} No user provided -> Usage: !shoutout/!so @user/user");
+                    CPH.SendMessage($"@{user} No user provided -> Usage: !shoutout/!so @user/user");
 
                     break;
                 }
@@ -74,7 +74,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (twitchUserInfoEx == null)
                 {
-                    CPH.SendAction($"@{user} User doesn't exist TearGlove");
+                    CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
                     break;
                 }
@@ -93,30 +93,30 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 string targetChannelTitle = twitchUserInfoEx.ChannelTitle;
                 string game = twitchUserInfoEx.Game;
 
-                string actionPrefix = $"BIG shoutout to @{targetUser} nycto97Love1";
+                string messagePrefix = $"BIG shoutout to @{targetUser} nycto97Love1";
 
                 if (string.IsNullOrEmpty(targetChannelTitle) && string.IsNullOrEmpty(game))
                 {
-                    CPH.SendAction(
-                        $"{actionPrefix} You can find them over at twitch.tv/{targetUserName} nycto97Hype1"
+                    CPH.SendMessage(
+                        $"{messagePrefix} You can find them over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else if (string.IsNullOrEmpty(game))
                 {
-                    CPH.SendAction(
-                        $"{actionPrefix} They last streamed \"{targetChannelTitle}\" over at twitch.tv/{targetUserName} nycto97Hype1"
+                    CPH.SendMessage(
+                        $"{messagePrefix} They last streamed \"{targetChannelTitle}\" over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else if (string.IsNullOrEmpty(targetChannelTitle))
                 {
-                    CPH.SendAction(
-                        $"{actionPrefix} They last were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                    CPH.SendMessage(
+                        $"{messagePrefix} They last were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else
                 {
-                    CPH.SendAction(
-                        $"{actionPrefix} They last streamed \"{targetChannelTitle}\" and were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                    CPH.SendMessage(
+                        $"{messagePrefix} They last streamed \"{targetChannelTitle}\" and were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
 
@@ -186,7 +186,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (string.IsNullOrEmpty(rawInput))
                 {
-                    CPH.SendAction(
+                    CPH.SendMessage(
                         $"@{user} {action} themselves with {randomPercentage}% {suffix} {emote}"
                     );
 
@@ -201,12 +201,12 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (twitchUserInfo == null)
                 {
-                    CPH.SendAction($"@{user} User doesn't exist TearGlove");
+                    CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
                     break;
                 }
 
-                CPH.SendAction(
+                CPH.SendMessage(
                     $"@{user} {action} @{twitchUserInfo.UserName} with {randomPercentage}% {suffix} {emote}"
                 );
 
@@ -215,14 +215,14 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 break;
 
             case "06fdc6ff-62cd-4257-ac05-e09503aa4b6a": // Lurk
-                CPH.SendAction(
+                CPH.SendMessage(
                     $"Thanks for lurking @{user} nycto97Wave1{(!string.IsNullOrEmpty(rawInput) ? $" - \"{rawInput}\" -" : "")} I appreciate your presence! nycto97Love1"
                 );
 
                 break;
 
             case "baf03811-5f49-4237-bcae-a21d39bbd1c0": // Unlurk
-                CPH.SendAction(
+                CPH.SendMessage(
                     $"Welcome back @{user} nycto97Wave1{(!string.IsNullOrEmpty(rawInput) ? $" - \"{rawInput}\" -" : "")} I'm glad you're still here! nycto97Love1"
                 );
 
@@ -233,7 +233,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 if (userName == broadcastUserName)
                 {
-                    CPH.SendAction(
+                    CPH.SendMessage(
                         $"@{user} Ayo streamer guy, nuh-uuuh.. You ain't going nowhere boii"
                     );
 
@@ -305,96 +305,96 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             // Socials/accounts/links
 
             case "6a8c226d-c040-4e18-8f46-6daba6e2b48f": // Blizzard/Battle.net
-                CPH.SendAction("Blizzard / Battle.net -> Nycto#21256 🎮");
+                CPH.SendMessage("Blizzard / Battle.net -> Nycto#21256 🎮");
 
                 break;
 
             case "e3c23b9c-ed27-494b-a7c6-8fe99b20a0c1": // Call of Duty/Activision
-                CPH.SendAction("Call of Duty / Activision -> Nycto#5536049 🎮");
+                CPH.SendMessage("Call of Duty / Activision -> Nycto#5536049 🎮");
 
                 break;
 
             case "ec1c33ab-6b56-4153-a10f-c53fd083deed": // Counter-strike skins
-                CPH.SendAction(
+                CPH.SendMessage(
                     "CounterStrike2 Skins -> steamcommunity.com/id/Nycto97/inventory/#730 🔫"
                 );
 
                 break;
 
             case "9adb405a-c250-4ef6-99ca-811a54f72dfa": // Discord
-                CPH.SendAction("Discord -> discord.gg/Y2fat6v 💜");
+                CPH.SendMessage("Discord -> discord.gg/Y2fat6v 💜");
 
                 break;
 
             case "65cddd4d-de0f-4f50-868a-26f6b6faadce": // EA/Origin
-                CPH.SendAction("EA / Origin -> Nycto1337 🎮");
+                CPH.SendMessage("EA / Origin -> Nycto1337 🎮");
 
                 break;
 
             case "5561535f-e460-4c7d-84a3-f36baab3face": // Epic Games
-                CPH.SendAction("EpicGames -> Nycto97 🎮");
+                CPH.SendMessage("EpicGames -> Nycto97 🎮");
 
                 break;
 
             case "80328fd5-620f-4808-a6ed-7598561ba685": // Facebook
-                CPH.SendAction("Facebook -> facebook.com/Nycto1337 💙");
+                CPH.SendMessage("Facebook -> facebook.com/Nycto1337 💙");
 
                 break;
 
             case "ff683f2e-c906-4de1-bdb7-d1742ad64c50": // Instagram
-                CPH.SendAction("Instagram -> instagram.com/Nycto97 💗");
+                CPH.SendMessage("Instagram -> instagram.com/Nycto97 💗");
 
                 break;
 
             case "df11f4ea-42c5-48a1-8dfa-65cd7beceab1": // PlayStation
-                CPH.SendAction("PlayStation (PSN) -> Nycto97 🎮");
+                CPH.SendMessage("PlayStation (PSN) -> Nycto97 🎮");
 
                 break;
 
             case "34bb5dbe-684c-4cbc-8f6c-ad976d30f709": // Riot Games
-                CPH.SendAction("RiotGames -> Nycto#0420 🎮");
+                CPH.SendMessage("RiotGames -> Nycto#0420 🎮");
 
                 break;
 
             case "2bead345-45e0-4a6c-9891-d21a60a02559": // Socials
-                CPH.SendAction("Socials -> linktr.ee/Nycto97 ✨");
+                CPH.SendMessage("Socials -> linktr.ee/Nycto97 ✨");
 
                 break;
 
             case "5d12757f-7fd7-4109-9fb7-e933dd636729": // Steam
-                CPH.SendAction("Steam -> steamcommunity.com/id/Nycto97 🎮");
+                CPH.SendMessage("Steam -> steamcommunity.com/id/Nycto97 🎮");
 
                 break;
 
             case "54714415-aa5f-4315-80d4-46c9a8f96866": // TikTok
-                CPH.SendAction("TikTok -> tiktok.com/@Nycto1337 💗");
+                CPH.SendMessage("TikTok -> tiktok.com/@Nycto1337 💗");
 
                 break;
 
             case "a30e24f3-55ad-4f88-80a6-376fb83e2ef8": // Tip/donate
-                CPH.SendAction(
+                CPH.SendMessage(
                     $"Tip/donate -> streamelements.com/{broadcastUserName}/tip nycto97Hype1 @{user} only tip what you can afford, I don't want you to get in trouble! nycto97Love1"
                 );
 
                 break;
 
             case "6fbcbdf7-7203-4861-8f9a-bdc82c40424a": // Twitter/X
-                CPH.SendAction("Twitter (X) -> twitter.com/Nycto97 💙");
+                CPH.SendMessage("Twitter (X) -> twitter.com/Nycto97 💙");
 
                 break;
 
             case "8013b569-e4f3-432c-b0da-16cc08822561": // Ubisoft
-                CPH.SendAction("Ubisoft -> Nycto1337 🎮");
+                CPH.SendMessage("Ubisoft -> Nycto1337 🎮");
 
                 break;
 
             case "fc078460-677e-4529-93ec-46b666d35dfc": // Xbox
-                CPH.SendAction("Xbox -> Nycto97 🎮");
+                CPH.SendMessage("Xbox -> Nycto97 🎮");
 
                 break;
 
             case "6c534184-d7af-4174-b585-5c57c5a0ab94": // YouTube
-                CPH.SendAction("YouTube -> youtube.com/Nycto97 🎬");
+                CPH.SendMessage("YouTube -> youtube.com/Nycto97 🎬");
 
                 break;
 

@@ -24,7 +24,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             _ => "Unknown Tier",
         };
 
-        CPH.SendAction(
+        CPH.SendMessage(
             $"@{user} subscribed with {tierFormatted}! nycto97Hype1 Thank you for supporting the stream! nycto97Love1"
         );
 

@@ -26,7 +26,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             _ => "Unknown Tier",
         };
 
-        CPH.SendAction(
+        CPH.SendMessage(
             $"@{user} subscribed with {tierFormatted}! nycto97Hype1 They've subscribed for {cumulative} months{(monthStreak > 1 ? $", {monthStreak} months in a row" : "")}! Thank you for your ongoing support! nycto97Love1"
         );
 

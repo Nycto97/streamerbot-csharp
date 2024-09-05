@@ -24,7 +24,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("user", out string user);
         CPH.TryGetArg("reason", out string reason);
 
-        CPH.SendAction(
+        CPH.SendMessage(
             $"@{user} got timed out 🤫{(!string.IsNullOrEmpty(reason) ? $" Reason: {reason}" : "")}",
             false
         );
