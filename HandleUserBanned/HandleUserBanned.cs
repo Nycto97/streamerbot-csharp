@@ -12,25 +12,55 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 {
     public bool Execute()
     {
-        CPH.TryGetArg("userName", out string userName);
         CPH.TryGetArg("user", out string user);
+        CPH.TryGetArg("userName", out string userName);
+        CPH.TryGetArg("createdByUsername", out string createdByUsername);
         CPH.TryGetArg("reason", out string reason);
+
+        string reasonFormatted = !string.IsNullOrEmpty(reason) ? $" Reason: {reason}" : "";
+        string banMessage = $"@{user} got banned BOP{reasonFormatted}";
 
         TwitchUserInfo sbBotInfo = CPH.TwitchGetBot();
 
         if (userName != sbBotInfo.UserLogin)
         {
-            CPH.SendAction(
-                $"@{user} got banned BOP{(!string.IsNullOrEmpty(reason) ? $" Reason: {reason}" : "")}"
-            );
+            CPH.TryGetArg("broadcastUserName", out string broadcastUserName);
+
+            string banAction = $"banned @{user} BOP{reasonFormatted}";
+
+            switch (createdByUsername)
+            {
+                case var username when username == sbBotInfo.UserLogin:
+                    CPH.SendAction(banAction);
+
+                    break;
+
+                case var username when username == broadcastUserName:
+                    CPH.SendAction(banAction, false);
+
+                    break;
+
+                case "sery_bot":
+                    CPH.TryGetArg("createdByDisplayName", out string createdByDisplayName);
+
+                    CPH.SendMessage($"@{createdByDisplayName} banned @{user} BOP{reasonFormatted}");
+
+                    CPH.Wait(1000);
+
+                    CPH.SendMessage("good bot");
+
+                    break;
+
+                default:
+                    CPH.SendMessage(banMessage);
+
+                    break;
+            }
 
             return true;
         }
 
-        CPH.SendAction(
-            $"@{user} got banned BOP{(!string.IsNullOrEmpty(reason) ? $" Reason: {reason}" : "")}",
-            false
-        );
+        CPH.SendMessage(banMessage, false);
 
         CPH.Wait(1000);
 
@@ -43,8 +73,6 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TwitchAddModerator(userName);
 
         CPH.SendAction($"re-added @{user} as moderator", false);
-
-        CPH.TryGetArg("createdByUsername", out string createdByUsername);
 
         if (createdByUsername == "sery_bot")
         {
