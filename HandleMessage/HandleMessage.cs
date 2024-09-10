@@ -27,6 +27,34 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             return true;
         }
 
+        CPH.TryGetArg("broadcastUserId", out string broadcastUserId);
+        CPH.TryGetArg("isModerator", out bool isModerator);
+        CPH.TryGetArg("isVip", out bool isVip);
+
+        if (!(userId == broadcastUserId || isModerator || isVip) && ContainsUrl(message))
+        {
+            DateTime currentTime = DateTime.Now;
+            DateTime permit =
+                CPH.GetTwitchUserVarById<DateTime?>(userId, "linkPermitExpiration") ?? currentTime;
+
+            bool hasPermit = permit > currentTime;
+
+            if (!hasPermit)
+            {
+                CPH.TryGetArg("msgId", out string messageId);
+
+                CPH.UnsetTwitchUserVarById(userId, "linkPermitExpiration");
+
+                CPH.TwitchDeleteChatMessage(messageId);
+
+                CPH.SendMessage(
+                    $"@{user} Whoops! Only Mods and VIPs can post links nycto97RIP1 Please ask permission first nycto97Love1"
+                );
+
+                return true;
+            }
+        }
+
         // Sounds (keep at bottom of file because execution stops until sound is played (3rd argument is true))
 
         List<(int Position, Action Action)> actions = new List<(int, Action)>();
@@ -171,5 +199,15 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         }
 
         return true;
+    }
+
+    private bool ContainsUrl(string message)
+    {
+        string pattern =
+            @"(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?";
+
+        Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+
+        return regex.IsMatch(message);
     }
 }

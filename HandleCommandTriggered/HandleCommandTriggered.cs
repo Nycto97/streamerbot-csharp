@@ -65,6 +65,33 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
                 break;
 
+            case "1d93e5e3-148c-4439-822f-40492c7cbaff": // Permit (link)
+                if (string.IsNullOrEmpty(rawInput))
+                {
+                    CPH.SendMessage($"@{user} No user provided -> Usage: !permit @user/user");
+
+                    break;
+                }
+
+                if (string.IsNullOrEmpty(targetUserId))
+                {
+                    CPH.SendMessage($"@{user} User doesn't exist TearGlove");
+
+                    break;
+                }
+
+                int permitDuration = 60;
+
+                DateTime expiration = DateTime.Now.AddSeconds(permitDuration);
+
+                CPH.SetTwitchUserVarById(targetUserId, "linkPermitExpiration", expiration);
+
+                CPH.SendMessage(
+                    $"@{targetUser} You have permission to post a link for the next {permitDuration} seconds nycto97Love1"
+                );
+
+                break;
+
             case "64fe6caf-1fab-46eb-aeeb-17558db811ca": // Shoutout
                 if (string.IsNullOrEmpty(rawInput))
                 {
