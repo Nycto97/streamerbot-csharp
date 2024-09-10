@@ -16,6 +16,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("commandId", out Guid commandId);
         CPH.TryGetArg("rawInput", out string rawInput);
         CPH.TryGetArg("user", out string user);
+        CPH.TryGetArg("userId", out string userId);
         CPH.TryGetArg("broadcastUserName", out string broadcastUserName);
 
         // Need 'Twitch Add target info' sub-action for these
@@ -184,7 +185,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 Random random = new Random();
                 int randomPercentage = random.Next(0, 101);
 
-                if (string.IsNullOrEmpty(rawInput))
+                if (string.IsNullOrEmpty(rawInput) || userId == targetUserId)
                 {
                     CPH.SendMessage(
                         $"@{user} {action} themselves with {randomPercentage}% {suffix} {emote}"
@@ -225,7 +226,6 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 break;
 
             case "303ccc43-3191-4b52-a04c-9b4dd3fa8066": // Vanish
-                CPH.TryGetArg("userId", out string userId);
                 CPH.TryGetArg("broadcastUserId", out string broadcastUserId);
 
                 if (userId == broadcastUserId)
