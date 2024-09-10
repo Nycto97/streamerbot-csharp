@@ -18,6 +18,10 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("user", out string user);
         CPH.TryGetArg("broadcastUserName", out string broadcastUserName);
 
+        // Need 'Twitch Add target info' sub-action for these
+        CPH.TryGetArg("targetUser", out string targetUser);
+        CPH.TryGetArg("targetUserName", out string targetUserName);
+
         string commandIdString = commandId.ToString();
 
         switch (commandIdString)
@@ -68,18 +72,14 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     break;
                 }
 
-                TwitchUserInfoEx twitchUserInfoEx = CPH.TwitchGetExtendedUserInfoByLogin(
-                    rawInput.Replace("@", "")
-                );
-
-                if (twitchUserInfoEx == null)
+                if (string.IsNullOrEmpty(targetUserName))
                 {
                     CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
                     break;
                 }
 
-                CPH.TwitchSendShoutoutByLogin(twitchUserInfoEx.UserLogin);
+                CPH.TwitchSendShoutoutByLogin(targetUserName);
 
                 CPH.Wait(1500);
 
@@ -88,20 +88,19 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     You can go live without a title and without a category...
                 */
 
-                string targetUser = twitchUserInfoEx.UserName;
-                string targetUserName = twitchUserInfoEx.UserLogin;
-                string targetChannelTitle = twitchUserInfoEx.ChannelTitle;
-                string game = twitchUserInfoEx.Game;
+                // Need 'Twitch Add target info' sub-action for these
+                CPH.TryGetArg("targetChannelTitle", out string targetChannelTitle);
+                CPH.TryGetArg("game", out string targetGame);
 
                 string messagePrefix = $"BIG shoutout to @{targetUser} nycto97Love1";
 
-                if (string.IsNullOrEmpty(targetChannelTitle) && string.IsNullOrEmpty(game))
+                if (string.IsNullOrEmpty(targetChannelTitle) && string.IsNullOrEmpty(targetGame))
                 {
                     CPH.SendMessage(
                         $"{messagePrefix} You can find them over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
-                else if (string.IsNullOrEmpty(game))
+                else if (string.IsNullOrEmpty(targetGame))
                 {
                     CPH.SendMessage(
                         $"{messagePrefix} They last streamed \"{targetChannelTitle}\" over at twitch.tv/{targetUserName} nycto97Hype1"
@@ -110,13 +109,13 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 else if (string.IsNullOrEmpty(targetChannelTitle))
                 {
                     CPH.SendMessage(
-                        $"{messagePrefix} They last were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{messagePrefix} They last were doing {targetGame} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
                 else
                 {
                     CPH.SendMessage(
-                        $"{messagePrefix} They last streamed \"{targetChannelTitle}\" and were doing {game} over at twitch.tv/{targetUserName} nycto97Hype1"
+                        $"{messagePrefix} They last streamed \"{targetChannelTitle}\" and were doing {targetGame} over at twitch.tv/{targetUserName} nycto97Hype1"
                     );
                 }
 
@@ -195,11 +194,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     break;
                 }
 
-                TwitchUserInfo twitchUserInfo = CPH.TwitchGetUserInfoByLogin(
-                    rawInput.Replace("@", "")
-                );
-
-                if (twitchUserInfo == null)
+                if (string.IsNullOrEmpty(targetUserName))
                 {
                     CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
@@ -207,7 +202,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 }
 
                 CPH.SendMessage(
-                    $"@{user} {action} @{twitchUserInfo.UserName} with {randomPercentage}% {suffix} {emote}"
+                    $"@{user} {action} @{targetUser} with {randomPercentage}% {suffix} {emote}"
                 );
 
                 CPH.PlaySound(@$"D:\jelle\Music\Twitch\Sounds\{soundFileName}", volume);
