@@ -90,6 +90,10 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     $"@{targetUser} You have permission to post a link for the next {permitDuration} seconds nycto97Love1"
                 );
 
+                CPH.Wait(permitDuration * 1000);
+
+                CPH.UnsetTwitchUserVarById(targetUserId, "linkPermitExpiration");
+
                 break;
 
             case "64fe6caf-1fab-46eb-aeeb-17558db811ca": // Shoutout
