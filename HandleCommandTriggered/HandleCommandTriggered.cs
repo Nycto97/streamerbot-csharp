@@ -20,7 +20,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         // Need 'Twitch Add target info' sub-action for these
         CPH.TryGetArg("targetUser", out string targetUser);
-        CPH.TryGetArg("targetUserName", out string targetUserName);
+        CPH.TryGetArg("targetUserId", out string targetUserId);
 
         string commandIdString = commandId.ToString();
 
@@ -72,14 +72,14 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     break;
                 }
 
-                if (string.IsNullOrEmpty(targetUserName))
+                if (string.IsNullOrEmpty(targetUserId))
                 {
                     CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
                     break;
                 }
 
-                CPH.TwitchSendShoutoutByLogin(targetUserName);
+                CPH.TwitchSendShoutoutById(targetUserId);
 
                 CPH.Wait(1500);
 
@@ -89,6 +89,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 */
 
                 // Need 'Twitch Add target info' sub-action for these
+                CPH.TryGetArg("targetUserName", out string targetUserName);
                 CPH.TryGetArg("targetChannelTitle", out string targetChannelTitle);
                 CPH.TryGetArg("game", out string targetGame);
 
@@ -194,7 +195,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     break;
                 }
 
-                if (string.IsNullOrEmpty(targetUserName))
+                if (string.IsNullOrEmpty(targetUserId))
                 {
                     CPH.SendMessage($"@{user} User doesn't exist TearGlove");
 
@@ -224,9 +225,10 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 break;
 
             case "303ccc43-3191-4b52-a04c-9b4dd3fa8066": // Vanish
-                CPH.TryGetArg("userName", out string userName);
+                CPH.TryGetArg("userId", out string userId);
+                CPH.TryGetArg("broadcastUserId", out string broadcastUserId);
 
-                if (userName == broadcastUserName)
+                if (userId == broadcastUserId)
                 {
                     CPH.SendMessage(
                         $"@{user} Ayo streamer guy, nuh-uuuh.. You ain't going nowhere boii"
@@ -241,6 +243,8 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                 bool timeoutAsBot = !isModerator;
                 string reason =
                     $"Vanished (Reload page if timeout persists after {timeoutInSeconds} seconds and shows as -1 seconds)";
+
+                CPH.TryGetArg("userName", out string userName);
 
                 CPH.TwitchTimeoutUser(userName, timeoutInSeconds, reason, timeoutAsBot);
 

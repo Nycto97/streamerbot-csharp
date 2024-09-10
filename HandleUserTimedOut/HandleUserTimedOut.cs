@@ -12,11 +12,11 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 {
     public bool Execute()
     {
-        CPH.TryGetArg("userName", out string userName);
+        CPH.TryGetArg("userId", out string userId);
 
         TwitchUserInfo sbBotInfo = CPH.TwitchGetBot();
 
-        if (userName != sbBotInfo.UserLogin)
+        if (userId != sbBotInfo.UserId)
         {
             return true;
         }
@@ -31,6 +31,8 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         CPH.Wait(1000);
 
+        CPH.TryGetArg("userName", out string userName);
+
         CPH.TwitchUnbanUser(userName, false); // There's no dedicated UnTimeout C# method but this works
 
         CPH.SendAction($"removed timeout on @{user} Reason: Wrongfully timed out", false);
@@ -41,9 +43,11 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         CPH.SendAction($"re-added @{user} as moderator", false);
 
-        CPH.TryGetArg("createdByUsername", out string createdByUsername);
+        CPH.TryGetArg("createdById", out string createdById);
 
-        if (createdByUsername == "sery_bot")
+        string seryBotUserId = CPH.GetGlobalVar<string>("seryBotUserId", true);
+
+        if (createdById == seryBotUserId)
         {
             CPH.Wait(1000);
 

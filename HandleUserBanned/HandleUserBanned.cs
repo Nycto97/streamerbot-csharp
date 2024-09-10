@@ -13,34 +13,36 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
     public bool Execute()
     {
         CPH.TryGetArg("user", out string user);
+        CPH.TryGetArg("userId", out string userId);
         CPH.TryGetArg("userName", out string userName);
-        CPH.TryGetArg("createdByUsername", out string createdByUsername);
+        CPH.TryGetArg("createdById", out string createdById);
         CPH.TryGetArg("reason", out string reason);
 
         string reasonFormatted = !string.IsNullOrEmpty(reason) ? $" Reason: {reason}" : "";
         string banMessage = $"@{user} got banned BOP{reasonFormatted}";
 
         TwitchUserInfo sbBotInfo = CPH.TwitchGetBot();
+        string seryBotUserId = CPH.GetGlobalVar<string>("seryBotUserId");
 
-        if (userName != sbBotInfo.UserLogin)
+        if (userId != sbBotInfo.UserId)
         {
-            CPH.TryGetArg("broadcastUserName", out string broadcastUserName);
+            CPH.TryGetArg("broadcastUserId", out string broadcastUserId);
 
             string banAction = $"banned @{user} BOP{reasonFormatted}";
 
-            switch (createdByUsername)
+            switch (createdById)
             {
-                case var username when username == sbBotInfo.UserLogin:
+                case var id when id == sbBotInfo.UserId:
                     CPH.SendAction(banAction);
 
                     break;
 
-                case var username when username == broadcastUserName:
+                case var id when id == broadcastUserId:
                     CPH.SendAction(banAction, false);
 
                     break;
 
-                case "sery_bot":
+                case var id when id == seryBotUserId:
                     CPH.TryGetArg("createdByDisplayName", out string createdByDisplayName);
 
                     CPH.SendMessage($"@{createdByDisplayName} banned @{user} BOP{reasonFormatted}");
@@ -74,7 +76,7 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
         CPH.SendAction($"re-added @{user} as moderator", false);
 
-        if (createdByUsername == "sery_bot")
+        if (createdById == seryBotUserId)
         {
             CPH.Wait(1000);
 

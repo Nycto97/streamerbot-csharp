@@ -14,11 +14,13 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 {
     public bool Execute()
     {
-        CPH.TryGetArg("userName", out string userName);
         CPH.TryGetArg("user", out string user);
+        CPH.TryGetArg("userId", out string userId);
         CPH.TryGetArg("message", out string message);
 
-        if (userName == "sery_bot" && message.StartsWith($"{user} has joined"))
+        string seryBotUserId = CPH.GetGlobalVar<string>("seryBotUserId");
+
+        if (userId == seryBotUserId && message.StartsWith($"{user} has joined"))
         {
             CPH.SendMessage("good bot");
 
