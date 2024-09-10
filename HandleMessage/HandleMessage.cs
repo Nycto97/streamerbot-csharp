@@ -39,11 +39,11 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
             bool hasPermit = permit > currentTime;
 
+            CPH.UnsetTwitchUserVarById(userId, "linkPermitExpiration");
+
             if (!hasPermit)
             {
                 CPH.TryGetArg("msgId", out string messageId);
-
-                CPH.UnsetTwitchUserVarById(userId, "linkPermitExpiration");
 
                 CPH.TwitchDeleteChatMessage(messageId);
 
