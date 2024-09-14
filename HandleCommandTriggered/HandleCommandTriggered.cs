@@ -68,7 +68,9 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             case "1d93e5e3-148c-4439-822f-40492c7cbaff": // Permit (link)
                 if (string.IsNullOrEmpty(rawInput))
                 {
-                    CPH.SendMessage($"@{user} No user provided -> Usage: !permit @user/user");
+                    CPH.SendMessage(
+                        $"@{user} No user provided -> Usage: !permit @user/user [duration (seconds)]"
+                    );
 
                     break;
                 }
@@ -80,7 +82,14 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
                     break;
                 }
 
+                CPH.TryGetArg("input1", out string input1);
+
                 int permitDuration = 60;
+
+                if (!string.IsNullOrEmpty(input1) && int.TryParse(input1, out int parsedDuration))
+                {
+                    permitDuration = parsedDuration;
+                }
 
                 DateTime expiration = DateTime.Now.AddSeconds(permitDuration);
 
