@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using Streamer.bot.Plugin.Interface; // Remove in Streamer.bot
 using Streamer.bot.Plugin.Interface.Enums; // Remove in Streamer.bot
@@ -12,6 +13,23 @@ using Streamer.bot.Plugin.Interface.Model; // Remove in Streamer.bot
 
 public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.bot
 {
+    private HashSet<string> tldHashSet;
+
+    public void Init()
+    {
+        string filePath = "G:/Coding/Coding/tlds-alpha-by-domain.txt";
+        tldHashSet = new HashSet<string>();
+
+        foreach (string line in File.ReadLines(filePath))
+        {
+            string trimmed = line.Trim();
+            if (!trimmed.StartsWith("#") && !string.IsNullOrWhiteSpace(trimmed))
+            {
+                tldHashSet.Add(trimmed.ToUpperInvariant());
+            }
+        }
+    }
+
     public bool Execute()
     {
         CPH.TryGetArg("user", out string user);
@@ -204,10 +222,11 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
     private bool ContainsUrl(string message)
     {
         string pattern =
-            @"(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?";
+            @"(http:\/\/|https:\/\/)?[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*\.([a-zA-Z0-9]{1,10})((\/+)[^\/ ]*)*";
 
         Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+        Match matches = regex.Match(message);
 
-        return regex.IsMatch(message);
+        return regex.IsMatch(message) && tldHashSet.Contains(matches.Groups[3].Value.ToUpper());
     }
 }
