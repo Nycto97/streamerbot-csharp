@@ -30,10 +30,12 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
             // Game scene enough since webcam also shows/hides in Marbles scene because of the group
             CPH.ObsSetSourceVisibility("🔴 GAME", "Webcam 720p", sourceEnabled);
         }
-        // Hide Small Cam + Follower Goal group when Be Right Back Group Marbles gets shown
+        // Hide Small Cam + Follower Goal group and create Twitch stream marker when Be Right Back Group Marbles gets shown
         else if (sceneName == "🔴 MARBLES" && sceneItemId == 43 && sourceEnabled)
         {
             CPH.ObsSetSourceVisibility("🔴 MARBLES", "Small Cam + Follower Goal", false);
+
+            CPH.CreateStreamMarker("Be Right Back");
         }
         else if (
             // Spotify Song Panel
