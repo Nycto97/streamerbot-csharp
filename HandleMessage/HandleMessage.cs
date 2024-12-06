@@ -44,10 +44,29 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
         CPH.TryGetArg("message", out string message);
 
         string seryBotUserId = CPH.GetGlobalVar<string>("seryBotUserId");
+        string pokemonCommunityGameUserId = CPH.GetGlobalVar<string>("pokemonCommunityGameUserId");
 
         if (userId == seryBotUserId && message.StartsWith($"{user} has joined"))
         {
             CPH.SendMessage("good bot");
+
+            return true;
+        }
+
+        if (userId == pokemonCommunityGameUserId)
+        {
+            if (message.Contains("Catch it using"))
+            {
+                CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\whos-that-pokemon.mp3", 0.09f, true);
+            }
+            else if (message.Contains("has been caught"))
+            {
+                CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\caught-a-pokemon.mp3", 0.04f, true);
+            }
+            else if (message.Contains("No one caught"))
+            {
+                CPH.PlaySound(@"D:\jelle\Music\Twitch\Sounds\pokemon-run-away.mp3", 0.08f, true);
+            }
 
             return true;
         }
