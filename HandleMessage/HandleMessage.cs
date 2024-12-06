@@ -32,6 +32,13 @@ public class CPHInline : CPHInlineBase // Remove ": CPHInlineBase" in Streamer.b
 
     public bool Execute()
     {
+        CPH.TryGetArg("fromSharedChat", out bool fromSharedChat);
+
+        if (fromSharedChat)
+        {
+            return true;
+        }
+
         CPH.TryGetArg("user", out string user);
         CPH.TryGetArg("userId", out string userId);
         CPH.TryGetArg("message", out string message);
